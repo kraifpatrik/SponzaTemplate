@@ -360,6 +360,8 @@ function CModel() constructor
 			Materials[? _material.Name] = _material;
 		}
 
+		IsLoaded = true;
+
 		return self;
 	};
 
