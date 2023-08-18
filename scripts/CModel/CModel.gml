@@ -63,6 +63,7 @@ function CModel() constructor
 						}
 						Sprites[? _spritePath] = sprite_add(_spritePath, 1, false, false, 0, 0);
 					}
+					_material.BaseColorPath = _spritePath;
 					_material.BaseColor = sprite_get_texture(Sprites[? _spritePath], 0);
 				}
 				break;
@@ -80,6 +81,7 @@ function CModel() constructor
 						}
 						Sprites[? _spritePath] = sprite_add(_spritePath, 1, false, false, 0, 0);
 					}
+					_material.MetallicRoughnessPath = _spritePath;
 					_material.MetallicRoughness = sprite_get_texture(Sprites[? _spritePath], 0);
 				}
 				break;
@@ -97,6 +99,7 @@ function CModel() constructor
 						}
 						Sprites[? _spritePath] = sprite_add(_spritePath, 1, false, false, 0, 0);
 					}
+					_material.NormalPath = _spritePath;
 					_material.Normal = sprite_get_texture(Sprites[? _spritePath], 0);
 				}
 				break;
