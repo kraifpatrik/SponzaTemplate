@@ -5,3 +5,6 @@
 
 **Screenshot:**
 ![Screenshot](Screenshot.png)
+
+## Credits
+Asset credits available at [datafiles/Data/AssetCredits.txt](datafiles/Data/AssetCredits.txt).
