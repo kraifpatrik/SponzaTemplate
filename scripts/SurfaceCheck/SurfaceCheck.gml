@@ -1,12 +1,15 @@
 /// @func SurfaceCheck(_surface, _width, _height)
 ///
-/// @desc
+/// @desc Checks if given surface exists and if it has the correct size. If it
+/// does not exist then it is created. If it exists but it has a different size
+/// then it is resized.
 ///
-/// @param {Id.Surface} _surface
-/// @param {Real} _width
-/// @param {Real} _height
+/// @param {Id.Surface} _surface The surface to check.
+/// @param {Real} _width The desired width of the surface.
+/// @param {Real} _height The desired height of the surface.
 ///
-/// @return {Id.Surface}
+/// @return {Id.Surface} The original surface if it was only resized or
+/// a new surface if given surface did not exist.
 function SurfaceCheck(_surface, _width, _height)
 {
 	_width = max(_width, 1);

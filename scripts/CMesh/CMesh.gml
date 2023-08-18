@@ -1,22 +1,25 @@
 /// @func CMesh([_model])
 ///
-/// @desc
+/// @desc A mesh.
 ///
-/// @param {Struct.CModel} [_model]
+/// @param {Struct.CModel, Undefined} [_model] The model to which the mesh belongs.
 function CMesh(_model=undefined) constructor
 {
-	/// @var {Struct.CModel, Undefined}
+	/// @var {Struct.CModel, Undefined} The model to which the mesh belongs or
+	/// `undefined` (default).
 	Model = _model;
 
-	/// @var {Id.VertexBuffer, Undefined}
+	/// @var {Id.VertexBuffer, Undefined} The vertex buffer of the mesh or
+	/// `undefined` (default).
 	VertexBuffer = undefined;
 
-	/// @var {String, Undefined}
+	/// @var {String, Undefined} The name of the material used by the mesh or
+	/// `undefined` (default).
 	Material = undefined;
 
 	/// @func Freeze()
 	///
-	/// @desc
+	/// @desc Freezes the mesh's vertex buffer (if not `undefined`).
 	///
 	/// @return {Struct.CMesh} Returns `self`.
 	static Freeze = function ()
@@ -30,7 +33,7 @@ function CMesh(_model=undefined) constructor
 
 	/// @func Submit()
 	///
-	/// @desc
+	/// @desc Submits the mesh's vertex buffer (if not `undefined`).
 	///
 	/// @return {Struct.CMesh} Returns `self`.
 	static Submit = function ()
@@ -76,7 +79,7 @@ function CMesh(_model=undefined) constructor
 
 	/// @func Destroy()
 	///
-	/// @desc
+	/// @desc Destroys the mesh and frees used memory.
 	///
 	/// @return {Undefined}
 	static Destroy = function ()

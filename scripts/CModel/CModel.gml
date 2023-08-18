@@ -6,19 +6,23 @@ global.__vertexFormat = vertex_format_end();
 
 /// @func CModel()
 ///
-/// @desc Basic 3D model with shitty OBJ file loading.
+/// @desc A basic 3D model with shitty OBJ file loading.
 function CModel() constructor
 {
-	/// @var {Bool}
+	/// @var {Bool} If `true` then the model is loaded. Default is `false`.
 	IsLoaded = false;
 
-	/// @var {Array<Struct.CMesh>}
+	/// @var {Array<Struct.CMesh>} An array of meshes that the model consists of.
 	Meshes = [];
 
-	/// @var {Id.DsMap, Undefined}
+	/// @var {Id.DsMap, Undefined} A map of materials used by the model or
+	/// `undefined` (default). Keys are material names and values are instances of
+	/// {@link CMesh}.
 	Materials = undefined;
 
-	/// @var {Id.DsMap, Undefined}
+	/// @var {Id.DsMap, Undefined} A map of sprites used by materials as textures
+	/// or `undefined` (default). Keys are paths to the sprites and values are
+	/// `Asset.GMSprite`s.
 	Sprites = undefined;
 
 	static __LoadMaterials = function (_path)
@@ -243,9 +247,11 @@ function CModel() constructor
 
 	/// @func Freeze()
 	///
-	/// @desc
+	/// @desc Freezes all meshes that the model consists of.
 	///
 	/// @return {Struct.CModel} Returns `self`.
+	///
+	/// @see CMesh.Freeze
 	static Freeze = function ()
 	{
 		for (var i = array_length(Meshes) - 1; i >= 0; --i)
@@ -257,9 +263,11 @@ function CModel() constructor
 
 	/// @func Submit()
 	///
-	/// @desc
+	/// @desc Submits all meshes that the model consists of.
 	///
 	/// @return {Struct.CModel} Returns `self`.
+	///
+	/// @see CMesh.Submit
 	static Submit = function ()
 	{
 		for (var i = array_length(Meshes) - 1; i >= 0; --i)
@@ -270,6 +278,8 @@ function CModel() constructor
 	};
 
 	/// @func Destroy()
+	///
+	/// @desc Destroys the model and frees used memory.
 	///
 	/// @return {Undefined}
 	static Destroy = function ()
