@@ -17,6 +17,65 @@ function CMesh(_model=undefined) constructor
 	/// `undefined` (default).
 	Material = undefined;
 
+	/// @func ToBuffer(_buffer)
+	///
+	/// @desc Writes the mesh to a buffer.
+	///
+	/// @param {Id.Buffer} _buffer A buffer to write the mesh into.
+	///
+	/// @return {Struct.CMesh} Returns `self`.
+	///
+	/// @throws {String} If an error occurs.
+	static ToBuffer = function (_buffer)
+	{
+		if (Material == undefined)
+		{
+			throw "Mesh's material name cannot be undefined!";
+		}
+
+		if (VertexBuffer == undefined)
+		{
+			throw "Vertex buffer cannot be undefined!";
+		}
+
+		var _vertexCount = vertex_get_number(VertexBuffer);
+		buffer_write(_buffer, buffer_u32, _vertexCount);
+
+		// WTF this freezes the game
+		//buffer_copy_from_vertex_buffer(VertexBuffer, 0, _vertexCount, _buffer, buffer_tell(_buffer));
+		//buffer_seek(_buffer, buffer_seek_end, 0);
+
+		var _vbuffer = buffer_create_from_vertex_buffer(VertexBuffer, buffer_fixed, 1);
+		var _vbufferSize = buffer_get_size(_vbuffer);
+		buffer_copy(_vbuffer, 0, _vbufferSize, _buffer, buffer_tell(_buffer));
+		buffer_delete(_vbuffer);
+		buffer_seek(_buffer, buffer_seek_relative, _vbufferSize);
+
+		buffer_write(_buffer, buffer_string, Material);
+
+		return self;
+	};
+
+	/// @func FromBuffer(_buffer)
+	///
+	/// @desc Loads the mesh from a buffer.
+	///
+	/// @param {Id.Buffer} _buffer The buffer to load the mesh from.
+	///
+	/// @return {Struct.CMesh} Returns `self`.
+	///
+	/// @throws {String} If an error occurs.
+	static FromBuffer = function (_buffer)
+	{
+		var _vertexCount = buffer_read(_buffer, buffer_u32);
+		VertexBuffer = vertex_create_buffer_from_buffer_ext(
+			_buffer, global.__vertexFormat, buffer_tell(_buffer), _vertexCount);
+		var _byteSize = vertex_get_buffer_size(VertexBuffer);
+		buffer_seek(_buffer, buffer_seek_relative, _byteSize);
+		Material = buffer_read(_buffer, buffer_string);
+		return self;
+	};
+
 	/// @func Freeze()
 	///
 	/// @desc Freezes the mesh's vertex buffer (if not `undefined`).

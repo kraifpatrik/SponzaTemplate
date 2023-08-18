@@ -11,16 +11,17 @@
   },
   "defaultScriptType": 1,
   "Folders": [
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Template/Fonts.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Template/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Template","folderPath":"folders/Template.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Template/Sprites.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shaders","folderPath":"folders/Template/Shaders.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Template/Rooms.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Template/Fonts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Template/Objects.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Template/Rooms.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Template/Scripts.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shaders","folderPath":"folders/Template/Shaders.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Template/Sprites.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"AssetCredits.txt","CopyToMask":-1,"filePath":"datafiles/Data",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Sponza.bin","CopyToMask":-1,"filePath":"datafiles/Data/Sponza",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Sponza.mtl","CopyToMask":-1,"filePath":"datafiles/Data/Sponza",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Sponza.obj","CopyToMask":-1,"filePath":"datafiles/Data/Sponza",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"background_BaseColor.jpg","CopyToMask":-1,"filePath":"datafiles/Data/Sponza/textures",},
@@ -91,7 +92,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.89",
+    "IDEVersion": "2023.800.0.402",
   },
   "resources": [
     {"id":{"name":"SprBlack","path":"sprites/SprBlack/SprBlack.yy",},},
@@ -115,6 +116,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"RmTemplate","path":"rooms/RmTemplate/RmTemplate.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],

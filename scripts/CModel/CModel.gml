@@ -1,3 +1,5 @@
+#macro __MODEL_VERSION 0
+
 vertex_format_begin();
 vertex_format_add_position_3d();
 vertex_format_add_normal();
@@ -46,8 +48,11 @@ function CModel() constructor
 			{
 			// New material
 			case "newmtl":
-				_material = new CMaterial();
-				_materials[? _split[1]] = _material;
+				{
+					var _materialName = _split[1];
+					_material = new CMaterial(_materialName);
+					_materials[? _materialName] = _material;
+				}
 				break;
 
 			// BaseColor texture
@@ -244,6 +249,116 @@ function CModel() constructor
 		ds_list_destroy(_textureCoords);
 
 		IsLoaded = true;
+
+		return self;
+	};
+
+	/// @func ToBuffer(_buffer)
+	///
+	/// @desc Writes the model into a buffer.
+	///
+	/// @param {Id.Buffer} _buffer The buffer to write the model into.
+	///
+	/// @return {Struct.CModel} Returns `self`.
+	///
+	/// @throws {String} If an error occurs.
+	static ToBuffer = function (_buffer)
+	{
+		// Version
+		buffer_write(_buffer, buffer_u8, __MODEL_VERSION);
+
+		// Meshes
+		var _meshCount = array_length(Meshes);
+		buffer_write(_buffer, buffer_u32, _meshCount);
+
+		for (var i = 0; i < _meshCount; ++i)
+		{
+			Meshes[i].ToBuffer(_buffer);
+		}
+
+		// Materials
+		var _materialCount = ds_map_size(Materials);
+		buffer_write(_buffer, buffer_u32, _materialCount);
+
+		var _materialName = ds_map_find_first(Materials);
+		repeat (_materialCount)
+		{
+			Materials[? _materialName].ToBuffer(_buffer);
+			_materialName = ds_map_find_next(Materials, _materialName);
+		}
+
+		return self;
+	};
+
+	/// @func FromBuffer(_buffer)
+	///
+	/// @desc Loads the model from a buffer.
+	///
+	/// @param {Id.Buffer} _buffer The buffer to load the model from.
+	///
+	/// @return {Struct.CModel} Returns `self`.
+	///
+	/// @throws {String} If an error occurs.
+	static FromBuffer = function (_buffer)
+	{
+		if (IsLoaded)
+		{
+			throw "Already loaded!";
+		}
+
+		// Check version
+		if (buffer_read(_buffer, buffer_u8) != __MODEL_VERSION)
+		{
+			throw "Invalid model version!";
+		}
+
+		// Meshes
+		repeat (buffer_read(_buffer, buffer_u32))
+		{
+			array_push(Meshes, new CMesh(self).FromBuffer(_buffer));
+		}
+
+		// Materials
+		Materials = ds_map_create();
+		Sprites = ds_map_create();
+
+		repeat (buffer_read(_buffer, buffer_u32))
+		{
+			var _material = new CMaterial().FromBuffer(_buffer);
+			var _sprites = Sprites;
+
+			with (_material)
+			{
+				if (BaseColorPath != undefined)
+				{
+					if (!ds_map_exists(_sprites, BaseColorPath))
+					{
+						_sprites[? BaseColorPath] = sprite_add(BaseColorPath, 1, false, false, 0, 0);
+					}
+					BaseColor = sprite_get_texture(_sprites[? BaseColorPath], 0);
+				}
+
+				if (MetallicRoughnessPath != undefined)
+				{
+					if (!ds_map_exists(_sprites, MetallicRoughnessPath))
+					{
+						_sprites[? MetallicRoughnessPath] = sprite_add(MetallicRoughnessPath, 1, false, false, 0, 0);
+					}
+					NormalRoughness = sprite_get_texture(_sprites[? MetallicRoughnessPath], 0);
+				}
+
+				if (NormalPath != undefined)
+				{
+					if (!ds_map_exists(_sprites, NormalPath))
+					{
+						_sprites[? NormalPath] = sprite_add(NormalPath, 1, false, false, 0, 0);
+					}
+					Normal = sprite_get_texture(_sprites[? NormalPath], 0);
+				}
+			}
+
+			Materials[? _material.Name] = _material;
+		}
 
 		return self;
 	};
