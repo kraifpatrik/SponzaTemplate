@@ -1,7 +1,7 @@
+varying vec2 v_vTexCoord;
+
 //uniform sampler2D u_texMetallicRoughness;
 //uniform sampler2D u_texNormal;
-
-varying vec2 v_vTexCoord;
 
 void main()
 {
