@@ -51,12 +51,3 @@ mouseLastY = 0;
 gui = new CGUI();
 guiShow = false;
 screenshotMode = false;
-
-model = new CModel()
-	.FromOBJ("Data/Sponza/Sponza.obj")
-	.Freeze();
-modelScale = 0.01;
-modelMatrix = matrix_build(
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0,
-	modelScale, modelScale, modelScale);
