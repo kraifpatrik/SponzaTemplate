@@ -344,7 +344,7 @@ function CModel() constructor
 					{
 						_sprites[? MetallicRoughnessPath] = sprite_add(MetallicRoughnessPath, 1, false, false, 0, 0);
 					}
-					NormalRoughness = sprite_get_texture(_sprites[? MetallicRoughnessPath], 0);
+					MetallicRoughness = sprite_get_texture(_sprites[? MetallicRoughnessPath], 0);
 				}
 
 				if (NormalPath != undefined)
