@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "CModel",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Scripts",
-    "path": "folders/Template/Scripts.yy",
+  "$GMScript":"",
+  "%Name":"CModel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"CModel",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Template/Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

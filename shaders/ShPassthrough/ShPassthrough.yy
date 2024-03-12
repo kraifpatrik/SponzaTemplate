@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "ShPassthrough",
-  "parent": {
-    "name": "Shaders",
-    "path": "folders/Template/Shaders.yy",
+  "$GMShader":"",
+  "%Name":"ShPassthrough",
+  "name":"ShPassthrough",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Template/Shaders.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

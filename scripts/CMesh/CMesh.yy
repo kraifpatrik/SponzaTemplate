@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "CMesh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Scripts",
-    "path": "folders/Template/Scripts.yy",
+  "$GMScript":"",
+  "%Name":"CMesh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"CMesh",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Template/Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
