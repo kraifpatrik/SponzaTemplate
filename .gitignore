@@ -5,3 +5,6 @@
 # macOS
 ._*
 .DS_Store
+
+# GMRT
+./Build/*
